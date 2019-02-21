@@ -72,8 +72,8 @@ public class RedBlack_Tree {
                     else tem.setRightNode(node);
                 }
             }
+            revise(this.rootNode);
         }
-        revise(this.rootNode);
     }
 
     public void get(Object key){
@@ -93,6 +93,9 @@ public class RedBlack_Tree {
     }
 
     public void revise(Node rootNode){
-
+        if (rootNode.getRightNode()==null&&rootNode.getLeftNode()==null){
+            rootNode.setColor(TREE_COLOR_BLACK);
+            return;
+        }
     }
 }

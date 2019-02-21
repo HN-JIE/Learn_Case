@@ -1,6 +1,5 @@
 package testForThread;
 
-import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -14,23 +13,23 @@ public class TestForThreadPoolExecutor {
         }
         @Override
         public void run(){
-//            try {
-//                Thread.sleep(1000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 //            threadNum++;
             System.out.println(threadNum);
         }
     }
     public static void main(String[] args) {
         ThreadPoolExecutor a =new ThreadPoolExecutor(10,
-                20,
+                Integer.MAX_VALUE,
                 1000,
                 TimeUnit.MILLISECONDS,
-                new LinkedBlockingDeque<>());
+                new SynchronousQueue());
 
-        for(int i=0;i<100;i++){
+        for(int i=0;i<1000;i++){
             MyThread myThread = new MyThread(i);
             a.execute(myThread);
         }
