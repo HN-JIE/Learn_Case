@@ -4,6 +4,6 @@ import java.util.BitSet;
 
 public class TopK {
     public static void main(String[] args) {
-        BitSet bitSet = new BitSet();
+        System.out.println(3&1);
     }
 }

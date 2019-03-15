@@ -10,12 +10,14 @@ public class SelfThread extends Thread {
     @Override
     public void run(){
         reentrantReadWriteLock.writeLock().lock();
+        reentrantReadWriteLock.readLock().lock();
         try {
-            Thread.sleep(2000);
+            Thread.sleep(20000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         System.out.println(Thread.currentThread().getId());
+        reentrantReadWriteLock.readLock().unlock();
         reentrantReadWriteLock.writeLock().unlock();
     }
 }

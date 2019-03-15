@@ -1,34 +1,36 @@
 package testForCollection;
 
-import java.util.Map;
-import java.util.TreeMap;
-
 public class TestForTreeMap {
     public static void main(String[] args) {
-        create();
+        A a = getB();
+        System.out.println(a.getA());
     }
+    public static B getB(){
+        B b = new B();
+        b.setA(1);
+        b.setB(2);
+        return b;
+    }
+    static class A {
+        private int a;
 
-    public static void create(){
-        Map treeMap = new TreeMap();
-        Map<String,Object> stringTreeMap  = new TreeMap();
+        public int getA() {
+            return a;
+        }
 
-        treeMap.put(2,2);
-        treeMap.put(3,3);
-        treeMap.put(6,6);
-        treeMap.put(5,5);
-        treeMap.put(7,7);
-        treeMap.put(4,4);
+        public void setA(int a) {
+            this.a = a;
+        }
+    }
+    static class B extends A{
+        private int b;
 
+        public int getB() {
+            return b;
+        }
 
-        treeMap.get(3);
-
-        stringTreeMap.put("a","a");
-        stringTreeMap.put("z","z");
-        stringTreeMap.put("y","y");
-        stringTreeMap.put("s","s");
-        stringTreeMap.put("d","d");
-        stringTreeMap.put("h","h");
-
-
+        public void setB(int b) {
+            this.b = b;
+        }
     }
 }
