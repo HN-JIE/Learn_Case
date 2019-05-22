@@ -1,5 +1,6 @@
 package testForThread;
 
+import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -23,13 +24,18 @@ public class TestForThreadPoolExecutor {
         }
     }
     public static void main(String[] args) {
-        ThreadPoolExecutor a =new ThreadPoolExecutor(10,
-                Integer.MAX_VALUE,
+        ThreadPoolExecutor a =new ThreadPoolExecutor(2,
+                3,
                 1000,
                 TimeUnit.MILLISECONDS,
-                new SynchronousQueue());
+                new SynchronousQueue(), new RejectedExecutionHandler(){
+            @Override
+            public void rejectedExecution(Runnable r, ThreadPoolExecutor executor){
+                System.out.println("hhhh");
+            }
+        });
 
-        for(int i=0;i<1000;i++){
+        for(int i=0;i<100;i++){
             MyThread myThread = new MyThread(i);
             a.execute(myThread);
         }
