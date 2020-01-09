@@ -1,7 +1,7 @@
 package selfDataStruction;
 
 import java.util.HashMap;
-import java.util.Map;
+import java.util.Hashtable;
 import java.util.Random;
 
 public class RedBlack_Tree {
@@ -9,6 +9,16 @@ public class RedBlack_Tree {
     public static final Boolean TREE_COLOR_RED = true;
     public static final Boolean TREE_COLOR_BLACK = false;
     static final Node leafNode = new Node(TREE_COLOR_BLACK, 0, 0, null, null, null);
+
+    private int size;
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
 
     static class Node {
         private Boolean color;
@@ -32,6 +42,7 @@ public class RedBlack_Tree {
     }
 
     public RedBlack_Tree() {
+        this.size = 0;
     }
 
     public void add(int hash, Object value) {
@@ -70,6 +81,7 @@ public class RedBlack_Tree {
             if (sizeChange)
                 revise(node);
         }
+        size++;
     }
 
     public void get(int hashKey) {
@@ -106,21 +118,21 @@ public class RedBlack_Tree {
                         node.color = TREE_COLOR_RED;
                     } else {
                         revertFunc(grParentNode, node);
+                        parentNode.parentNode = node;
+                        parentNode.rightNode = node.leftNode;
+                        grParentNode.leftNode = node.rightNode;
                         node.leftNode = parentNode;
                         node.rightNode = grParentNode;
-                        parentNode.parentNode = node;
-                        parentNode.rightNode = null;
-                        grParentNode.rightNode = null;
                         parentNode.color = TREE_COLOR_RED;
                     }
                 } else {
                     if (node == parentNode.leftNode) {
                         revertFunc(grParentNode,node);
+                        grParentNode.rightNode = node.leftNode;
+                        parentNode.leftNode = node.rightNode;
                         node.leftNode = grParentNode;
                         node.rightNode = parentNode;
-                        grParentNode.rightNode = null;
                         parentNode.parentNode = node;
-                        parentNode.leftNode = null;
                         parentNode.color = TREE_COLOR_RED;
                     } else {
                         revertFunc(grParentNode, parentNode);
@@ -164,11 +176,13 @@ public class RedBlack_Tree {
         RedBlack_Tree redBlack_tree = new RedBlack_Tree();
 //        int[] elements = new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
         for (int i = 0; i < 100; i++) {
-            redBlack_tree.add(i, String.valueOf(i));
+            Random random = new Random();
+            redBlack_tree.add(random.nextInt(1000), String.valueOf(random.nextInt(1000)));
             System.out.println(System.currentTimeMillis());
         }
         System.out.println(1);
         HashMap map = new HashMap<>();
         map.remove("2");
+        Hashtable a = null;
     }
 }

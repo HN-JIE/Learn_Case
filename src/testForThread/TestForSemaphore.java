@@ -1,5 +1,6 @@
 package testForThread;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
@@ -12,7 +13,6 @@ public class TestForSemaphore {
     }
     static int i=0;
     public static void main(String[] args) {
-
         for(int j=0;j<100;j++){
             new Thread(){
                 @Override

@@ -1,39 +1,28 @@
 package testForThread;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class SelfThread extends Thread {
     private ReentrantReadWriteLock reentrantReadWriteLock;
-    public SelfThread(ReentrantReadWriteLock reentrantReadWriteLock){
-        this.reentrantReadWriteLock=reentrantReadWriteLock;
+    private int num;
+
+    public SelfThread(ReentrantReadWriteLock reentrantReadWriteLock, int num) {
+        this.reentrantReadWriteLock = reentrantReadWriteLock;
+        this.num = num;
     }
+
     @Override
-    public void run(){
+    public void run() {
         reentrantReadWriteLock.writeLock().lock();
-        reentrantReadWriteLock.readLock().lock();
-        try {
-            Thread.sleep(20000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println(Thread.currentThread().getId());
-        reentrantReadWriteLock.readLock().unlock();
+//        reentrantReadWriteLock.readLock().lock();
+//        try {
+//            Thread.sleep(20000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        System.out.println("thread" + this.num);
+//        System.out.println(Thread.currentThread().getId());
+//        reentrantReadWriteLock.readLock().unlock();
         reentrantReadWriteLock.writeLock().unlock();
-    }
-
-    public static void main(String[] args) {
-        List a = new LinkedList();
-        a.add(1);
-        List b = new LinkedList<>(a);
-        C c = new C();
-        c.c=a;
-        a.add(2);
-        int dd =1;
-    }
-
-    static class C{
-        List c;
     }
 }

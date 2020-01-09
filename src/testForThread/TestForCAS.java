@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class TestForCAS {
     public static void main(String[] args) {
+        Object s = new String();
         AtomicInteger a = new AtomicInteger(0);
         int b = a.addAndGet(3);
 

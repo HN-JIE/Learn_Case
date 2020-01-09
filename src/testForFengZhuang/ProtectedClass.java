@@ -1,0 +1,4 @@
+package testForFengZhuang;
+
+class ProtectedClass {
+}

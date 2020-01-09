@@ -1,9 +1,7 @@
 package testForThread;
 
-import java.util.concurrent.RejectedExecutionHandler;
-import java.util.concurrent.SynchronousQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.BitSet;
+import java.util.concurrent.*;
 
 public class TestForThreadPoolExecutor {
     public static int num = 1;
@@ -28,7 +26,7 @@ public class TestForThreadPoolExecutor {
                 3,
                 1000,
                 TimeUnit.MILLISECONDS,
-                new SynchronousQueue(), new RejectedExecutionHandler(){
+                new SynchronousQueue <>(), new RejectedExecutionHandler(){
             @Override
             public void rejectedExecution(Runnable r, ThreadPoolExecutor executor){
                 System.out.println("hhhh");
