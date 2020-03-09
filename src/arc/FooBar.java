@@ -5,7 +5,7 @@ class FooBar {
     private int n;
 
     private static boolean flag = true;
-    public static Semaphore semaphore = new Semaphore(1);
+    public static Semaphore semaphore = new Semaphore(0);
 
     public FooBar(int n) {
         this.n = n;
